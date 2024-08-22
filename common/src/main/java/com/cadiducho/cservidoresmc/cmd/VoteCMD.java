@@ -15,9 +15,9 @@ import java.util.List;
 public class VoteCMD extends CSCommand {
 
     protected VoteCMD() {
-        super("vote", "40servidores.voto", Arrays.asList("votar40", "vote40", "voto40", "mivoto40"),
+        super("vote", "40servidores.vote", Arrays.asList("votar40", "vote40", "voto40", "mivoto40"),
                 "Valida tu voto en el servidor",
-                "Usa /voto40 àra validar tu voto en el servidor");
+                "Usa /vote para validar tu voto en el servidor");
     }
 
     final Cooldown cooldown = new Cooldown(60);
@@ -34,38 +34,36 @@ public class VoteCMD extends CSCommand {
 
         cooldown.setOnCooldown(sender.getName());
 
-        sender.sendMessageWithTag("&7Obteniendo voto...");
+        sender.sendMessage(plugin.getCSConfiguration().getString("command.vote.getting"));
         plugin.getApiClient().validateVote(sender.getName()).thenAccept((VoteResponse voteResponse) -> {
             String web = voteResponse.getWeb();
             VoteStatus status = voteResponse.getStatus();
 
             switch (status) {
                 case NOT_VOTED:
-                    sender.sendNotVotedTodayLink("&6No has votado hoy! Puedes hacerlo en &a ", web);
+                    sender.sendMessage(plugin.getCSConfiguration().getString("command.vote.notVoted").replace("{0}", web));
                     break;
                 case SUCCESS:
-                    sender.sendMessageWithTag(plugin.getCSConfiguration().getString("mensaje"));
+                    sender.sendMessage(plugin.getCSConfiguration().getString("command.vote.success"));
 
                     plugin.getCSConfiguration().customCommandsList().stream()
                             .map(cmds -> cmds.replace("{0}", sender.getName()))
                             .forEach(plugin::dispatchCommand);
 
-                    if (plugin.getCSConfiguration().getBoolean("broadcast.activado")) {
-                        plugin.broadcastMessage(plugin.getCSConfiguration().getString("broadcast.mensajeBroadcast").replace("{0}", sender.getName()));
-                    }
+                    plugin.broadcastMessage(plugin.getCSConfiguration().getString("command.vote.successBroadcast").replace("{0}", sender.getName()));
                     break;
                 case ALREADY_VOTED:
-                    sender.sendMessageWithTag("&aGracias por votar, pero ya has obtenido tu premio!");
+                    sender.sendMessage(plugin.getCSConfiguration().getString("command.vote.alreadyVoted"));
                     break;
                 case INVALID_kEY:
-                    sender.sendMessageWithTag("&cClave incorrecta. Entra en &bhttps://40servidoresmc.es/miservidor.php &cy cambia esta.");
+                    sender.sendMessage("&cClave incorrecta. Entra en &bhttps://40servidoresmc.es/miservidor.php &cy cambia esta.");
                     break;
                 default:
-                    sender.sendMessageWithTag("&7Ha ocurrido un error. Prueba más tarde o avisa a un adminsitrador");
+                    sender.sendMessage(plugin.getCSConfiguration().getString("command.vote.error"));
                     break;
             }
         }).exceptionally(e -> {
-            sender.sendMessageWithTag("&cHa ocurrido una excepción. Avisa a un administrador");
+            sender.sendMessage(plugin.getCSConfiguration().getString("command.vote.error"));
             plugin.logError("Excepción intentando votar: " + e.getMessage());
             return null;
         });

@@ -1,11 +1,17 @@
 debug: false
 clave: key
-broadcast:
-    activado: true
-    mensajeBroadcast: '&aGracias a {0} por votarnos! El ya ha obtenido su premio, usa &2/voto40&a y obten el tuyo'
 mensaje: '&6Gracias por votarnos! Aqui tienes tu premio: '
 comandosCustom: 
 - money add {0} 10
 readTimeOut: 5000
 tag: "&8[&b40ServidoresMC&8]"
 configVer: 3
+
+command:
+    vote:
+        getting: '&a&lVOTE &8» &fObteniendo información...'
+        notVoted: '&c&lVOTE &8» &fNo has votado hoy. Puedes hacerlo en &a{0}&f.'
+        success: '&a&lVOTE &8» &fGracias por votar por el servidor.'
+        successBroadcast: '&a&lVOTE &8» &a{0} &fha votado por el servidor usando &a/vote &fy ha obtenido una recompensa.'
+        alreadyVoted: '&c&lERROR &8» &fYa has votado hoy.'
+        error: '&c&lERROR &8» &fHa ocurrido un error al obtener la información de los votos. Intenta votar de nuevo en unas horas.'
