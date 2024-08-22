@@ -8,6 +8,11 @@ tag: "&8[&b40ServidoresMC&8]"
 configVer: 3
 
 command:
+    global:
+        cooldown: '&c&lERROR &8» &fEspera antes de volver a ejecutar este comando.'
+        noPermission: '&c&lERROR &8» &fNo tienes permiso.'
+        error: '&c&lERROR &8» &fHa ocurrido un error. Inténtalo de nuevo en unos minutos. Si el problema persiste, contacta con un administrador.'
+        onlyPlayer: '&c&lERROR &8» &fEste comando solo puede ser ejecutado por un jugador.'
     vote:
         getting: '&a&lVOTE &8» &fObteniendo información...'
         notVoted: '&c&lVOTE &8» &fNo has votado hoy. Puedes hacerlo en &a{0}&f.'

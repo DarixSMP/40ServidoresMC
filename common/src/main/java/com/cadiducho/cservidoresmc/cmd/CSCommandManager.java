@@ -49,22 +49,22 @@ public class CSCommandManager {
         if (command.isPresent()) {
             CSCommand cmd = command.get();
             if (!cmd.isAuthorized(sender)) {
-                sender.sendMessageWithTag("&cNo tienes permiso para usar este comando");
+                sender.sendMessage(plugin.getCSConfiguration().getString("command.global.noPermission"));
                 return;
             }
             CSCommand.CommandResult result = cmd.execute(plugin, sender, label, args);
             switch (result) {
                 case COOLDOWN:
-                    sender.sendMessageWithTag("&6No puedes ejecutar este comando tantas veces seguidas!");
+                    sender.sendMessage(plugin.getCSConfiguration().getString("command.global.cooldown"));
                     break;
                 case NO_PERMISSION:
-                    sender.sendMessageWithTag("&cNo tienes permiso para usar este comando");
+                    sender.sendMessage(plugin.getCSConfiguration().getString("command.global.noPermission"));
                     break;
                 case ERROR:
-                    sender.sendMessageWithTag("&cHa ocurrido un error inesperado");
+                    sender.sendMessage(plugin.getCSConfiguration().getString("command.global.error"));
                     break;
                 case ONLY_PLAYER:
-                    sender.sendMessageWithTag("&cEste comando sólo puede ser ejecutado por usuarios");
+                    sender.sendMessage(plugin.getCSConfiguration().getString("command.global.onlyPlayer"));
                     break;
             }
         }
