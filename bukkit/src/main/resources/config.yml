@@ -13,7 +13,7 @@ command:
         onlyPlayer: '&c&lERROR &8» &fEste comando solo puede ser ejecutado por un jugador.'
     vote:
         getting: '&a&lVOTE &8» &fObteniendo información...'
-        notVoted: '&c&lVOTE &8» &fNo has votado hoy. Puedes hacerlo en &a{0}&f.'
+        notVoted: '&c&lVOTE &8» &fNo has votado hoy. Puedes hacerlo en &a{0}'
         success: '&a&lVOTE &8» &fGracias por votar por el servidor.'
         successBroadcast: '&a&lVOTE &8» &a{0} &fha votado por el servidor usando &a/vote &fy ha obtenido una recompensa.'
         alreadyVoted: '&c&lERROR &8» &fYa has votado hoy.'
