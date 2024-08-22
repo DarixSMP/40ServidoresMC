@@ -6,9 +6,9 @@ api-version: 1.13
 description: Enlace para servidores de la web 40ServidoresMC!
 softdepend: [PlaceholderAPI]
 commands:
-    vote40:
+    vote:
         description: Comando principal de 40ServidoresMC
-        aliases: [votar40, voto40, mivoto40]
+        aliases: [vote40, votar40, voto40, mivoto40]
     update40:
         description: Comando para verificar version
         aliases: [actualizar40, upd40]
